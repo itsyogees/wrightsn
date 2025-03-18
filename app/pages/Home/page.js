@@ -201,7 +201,7 @@ const Home = () => {
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     if (scrollTop + clientHeight >= scrollHeight) {
-      console.log('Scrolled to bottom');
+      console.log("Scrolled to bottom");
     }
   };
   return (
@@ -246,11 +246,16 @@ const Home = () => {
         </div>
       </div>
       <div className="homeVideo">
-  <video autoPlay loop muted playsInline>
-    <source src="/video/nudgeVideo.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-</div>
+        <video autoPlay loop muted playsInline controls>
+          <source src="/video/nudgeVideo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* <div className="videoControls">
+          <button className="controlBtn playPauseBtn">Play/Pause</button>
+          <button className="controlBtn muteBtn">Mute/Unmute</button>
+          <button className="controlBtn fullscreenBtn">Fullscreen</button>
+        </div> */}
+      </div>
       <div className="homeSection2">
         <div className="homeSection2Head">
           <h2>
@@ -322,8 +327,11 @@ const Home = () => {
           <div className="homeSection5Head">
             <h2>Hear From Our Clients</h2>
           </div>
-          <div className={`homeSection5Content ${fadeOut ? "fade-out" : ""}`} onScroll={handleScroll}>
-            <div className="homeSection5ContentReview" >
+          <div
+            className={`homeSection5Content ${fadeOut ? "fade-out" : ""}`}
+            onScroll={handleScroll}
+          >
+            <div className="homeSection5ContentReview">
               <div className="section5Review2">
                 <img src="/image/logo.png" alt="Logo" />
                 <h2>“{sliderContent[currentSlide].review}”</h2>

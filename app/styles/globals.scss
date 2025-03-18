@@ -311,9 +311,8 @@ html {
     }
   }
 }
-
 .homeVideo {
-  width: 90%;
+  width: 90%; 
   margin: 2rem auto;
   position: relative;
   display: flex;
@@ -324,26 +323,15 @@ html {
   video {
     border-radius: 10px;
     display: block;
-    width: 80%;
-    height: 500px;
-    object-fit: cover;
+    width: 100%;
+    height: auto; 
+    // object-fit: cover;
     border: 1px solid #000;
   }
 
-  // &::before {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   left: 50%;
-  //   transform: translateX(-50%);
-  //   width: 80%;
-  //   height: 100%;
-  //   background: linear-gradient(#002d49b0, #002d49b0);
-  //   border-radius: 10px;
-  //   pointer-events: none;
-  // }
+  
 
-  @keyframes zoomOUt {
+  @keyframes zoomIn {
     0% {
       transform: scale(0.9);
     }
@@ -357,12 +345,34 @@ html {
 
   // Responsive styles
   @media (max-width: 768px) {
-    img {
-      width: 100%;
+    video {
+      max-height: 300px; // Adjust for smaller devices
     }
 
-    &::before {
-      width: 100%;
+    .videoControls {
+      flex-direction: column;
+      gap: 5px;
+
+      .controlBtn {
+        font-size: 12px;
+        padding: 5px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    video {
+      max-height: 200px; // Adjust for mobile devices
+    }
+
+    .videoControls {
+      bottom: 5px;
+      padding: 5px;
+
+      .controlBtn {
+        font-size: 10px;
+        padding: 3px;
+      }
     }
   }
 }
