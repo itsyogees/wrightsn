@@ -73,27 +73,30 @@ const Home = () => {
   const sliderContent = [
     {
       review:
-        "Wrights has improved our campaign ROI by helping us move from guesswork to making informed decisions.",
+        "WRIGHTS has transformed our leadership training by making behavioral change measurable and actionable, moving us from assumptions to data-driven decisions.",
       name: "Sam",
       position: "Manager",
       sales: "3",
       engagement: "Increase in Sales Engagement",
+      image: "/image/review.png", // Single image for this review
     },
     {
       review:
-        "Their solutions have streamlined our processes, saving us both time and resources.",
+        "Their AI-powered nudges have helped our employees improve key skills seamlessly, making learning a continuous and engaging process.",
       name: "Emma",
       position: "Director",
       sales: "5",
       engagement: "Improvement in Team Efficiency",
+      image: "/image/review2.jpg", // Single image for this review
     },
     {
       review:
-        "An exceptional experience with excellent customer support and results.",
+        "A game-changer in employee development—highly personalized insights, impactful nudges, and outstanding support!.",
       name: "Liam",
       position: "CEO",
       sales: "2",
       engagement: "Boost in Overall Productivity",
+      image: "/image/team3.png", // Single image for this review
     },
   ];
 
@@ -344,7 +347,8 @@ const Home = () => {
                 <img src="/image/logo.png" alt="Logo" />
                 <h2>“{sliderContent[currentSlide].review}”</h2>
                 <div className="section5Review2Text">
-                  <img src="/image/review.png" alt="Reviewer" />
+                  {/* Render single image */}
+                  <img src={sliderContent[currentSlide].image} alt="Reviewer" />
                   <div className="section5Text">
                     <p>{sliderContent[currentSlide].name}</p>
                     <span>{sliderContent[currentSlide].position}</span>
