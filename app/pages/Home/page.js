@@ -213,6 +213,15 @@ const Home = () => {
       console.log("Scrolled to bottom");
     }
   };
+  const videoRef = useRef(null);
+
+  const handlePlay = () => {
+    videoRef.current.play();
+  };
+
+  const handlePause = () => {
+    videoRef.current.pause();
+  };
   return (
     <>
       <div className="home">
@@ -255,16 +264,12 @@ const Home = () => {
         </div>
       </div>
       <div className="homeVideo">
-        <video autoPlay loop muted playsInline controls>
-          <source src="/video/nudgeVideo.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        {/* <div className="videoControls">
-          <button className="controlBtn playPauseBtn">Play/Pause</button>
-          <button className="controlBtn muteBtn">Mute/Unmute</button>
-          <button className="controlBtn fullscreenBtn">Fullscreen</button>
-        </div> */}
-      </div>
+      <video ref={videoRef} loop muted playsInline controls>
+        <source src="/video/nudgeVideo.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+     
+    </div>
       <div className="homeSection2">
         <div className="homeSection2Head">
           <h2>
