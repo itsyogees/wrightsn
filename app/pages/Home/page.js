@@ -33,6 +33,8 @@ const Home = () => {
       description:
         "“Nudges”, tiny interventions in the work environment to get people attention that influence their behavior. Nudges, remind & encourage people to make better decisions.",
       link: "Know More",
+      linkUrl:
+        "https://www.linkedin.com/pulse/nudges-tiny-interventions-lasting-behavioral-change-ephrem-f-ebnac",
     },
     {
       imgSection: "/image/homeSection32.jpeg",
@@ -40,6 +42,8 @@ const Home = () => {
       description:
         "Training evaluation no longer be based on personal experiences or opinions. Bringing more science and data analytics to measure actual behavior change to make work better.",
       link: "Know More",
+      linkUrl:
+        "https://www.linkedin.com/pulse/science-data-analytics-ld-ephrem-f-nnaic",
     },
     {
       imgSection: "/image/homeSection33.jpeg",
@@ -47,6 +51,8 @@ const Home = () => {
       description:
         "Machine Learning & Artificial Intelligence driven micro-targeted follow-ups helps us to know, what intervention to send, to which person, at what time.",
       link: "Know More",
+      linkUrl:
+        "https://www.linkedin.com/pulse/micro-targeted-follow-ups-driving-lasting-behavioral-change-ephrem-f-lkbyc",
     },
   ];
 
@@ -285,7 +291,9 @@ const Home = () => {
               <img src={item.imgSection} alt={item.title} />
               <h3>{item.title}</h3>
               <p>{item.description}</p>
-              <a href="#">{item.link}</a>
+              <a href={item.linkUrl} target="_blank" rel="noopener noreferrer">
+                {item.link}
+              </a>
             </div>
           ))}
         </div>
