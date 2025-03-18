@@ -201,64 +201,62 @@ const About = () => {
 
   
 
-  useEffect(() => {  
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          } else {
-            entry.target.classList.remove("show");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  // useEffect(() => {  
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           entry.target.classList.add("show");
+  //         } else {
+  //           entry.target.classList.remove("show");
+  //         }
+  //       });
+  //     },
+  //     { threshold: 0.1 }
+  //   );
 
-    const elements = aboutRef.current.querySelectorAll(".aboutSection8Container");
-    elements.forEach((el) => observer.observe(el));
+  //   const elements = aboutRef.current.querySelectorAll(".aboutSection8Container");
+  //   elements.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect();
-  }, []);
+  //   return () => observer.disconnect();
+  // }, []);
 
 
   const aboutSubRef = useRef(null);
  
-  useEffect(() => {  
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          } else {
-            entry.target.classList.remove("show");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  // useEffect(() => {  
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           entry.target.classList.add("show");
+  //         } else {
+  //           entry.target.classList.remove("show");
+  //         }
+  //       });
+  //     },
+  //     { threshold: 0.1 }
+  //   );
 
-    const elements = aboutSubRef.current.querySelectorAll(".aboutSection7Container");
-    elements.forEach((el) => observer.observe(el));
+  //   const elements = aboutSubRef.current.querySelectorAll(".aboutSection7Container");
+  //   elements.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect();
-  }, []);
+  //   return () => observer.disconnect();
+  // }, []);
   return (
     <>
       <div className="about">
         <div className="aboutContainer">
           <div className="aboutContent">
-            <h2>Behavior Change through CHOICE ARCHITECTURE</h2>
+            <h2>Our Commitment to LASTING Change</h2>
             <p>
-              The role of a leader is not to have solutions for all the
-              problems, but to create a culture where anyone can have a solution
-              and feel they are valued.
+            By blending data-driven insights, personalized nudges, and practical interventions, we help employees become their best selves and organizations thrive.
             </p>
             <button className="bookDemo-btn">Book a Demo</button>
           </div>
         </div>
       </div>
-      <div className="aboutSection7" ref={aboutSubRef}>
+      {/* <div className="aboutSection7" ref={aboutSubRef}>
         <div className="aboutSection7Head">
           <h2>We WRIGHTS,</h2>
         </div>
@@ -317,8 +315,8 @@ const About = () => {
           </p>
         </div>
       </div>
-    </div>
-      <div className="aboutSection9" >
+    </div> */}
+      {/* <div className="aboutSection9" >
       <div className="cards-container">
       {cardsData.map((card, index) => (
         <div key={index} className="card">
@@ -328,7 +326,7 @@ const About = () => {
         </div>
       ))}
     </div>
-      </div>
+      </div> */}
       <div className={`aboutSection1 ${isInView ? "inView" : ""}`}>
         <div className="aboutSection1Head">
           <h2>It all began with a single question</h2>
@@ -464,7 +462,7 @@ const About = () => {
               >
                 <FaRegImages />
                 <div className="valueContent">
-                  <p>Uphold High Standards in Delivering Results</p>
+                  <p>Innovate the Future</p>
                 </div>
               </div>
 
@@ -474,7 +472,7 @@ const About = () => {
               >
                 <FaHeart />
                 <div className="valueContent">
-                  <p>Focus on People</p>
+                  <p>Empathy in Action</p>
                 </div>
               </div>
 
@@ -484,7 +482,7 @@ const About = () => {
               >
                 <HiOutlineSpeakerphone />
                 <div className="valueContent">
-                  <p>Make it easier</p>
+                  <p>Communicate with Purpose</p>
                 </div>
               </div>
             </div>
@@ -513,7 +511,7 @@ const About = () => {
           <div className="aboutSectionContent">
             {/* Card 1 */}
             <div className="aboutSectionCart">
-              <img src="/image/team1.png" alt="Team Member 1" />
+              <img src="/image/team1.jpg" alt="Team Member 1" />
               <div className="aboutSectionCartContainer">
                 <div className="aboutSectionMember">
                   <h2>Mr. Ephrem</h2>
@@ -537,7 +535,7 @@ const About = () => {
 
             {/* Card 3 */}
             <div className="aboutSectionCart">
-              <img src="/image/team3.png" alt="Team Member 3" />
+              <img src="/image/team1.png" alt="Team Member 3" />
               <div className="aboutSectionCartContainer">
                 <div className="aboutSectionMember">
                   <h2>Mr. Subramaniam</h2>
