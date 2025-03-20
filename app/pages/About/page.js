@@ -11,19 +11,19 @@ const About = () => {
   const contentData = {
     Insight: {
       text: "<strong>This insight</strong>  led to a radical rethinking of the training model. Instead of relying on limited sessions and intuition-driven methods, our approach blends behavioral science with technology to achieve measurable, long-term impact. WRIGHTS is the culmination of years spent asking how to nudge employees towards small, incremental improvements every day—ultimately leading to genuine behavioral transformation.",
-      image: "/image/about1.png",
+      image: "/image/about-ing1.jpg",
     },
     OurValues: {
       text: "At the core of <strong>our values</strong>, we believe in placing employees at the center of their own growth. We never use training for evaluation purposes. Instead, we provide each participant with a clear picture of where they currently stand through a 360-degree behavioral feedback report. Armed with this knowledge, employees receive AI-powered nudges tailored to their unique areas of improvement—no forced directives or top-down mandates. By democratizing the process and removing the pressure of HR-led evaluations, we empower individuals to embrace their own growth journey.",
-      image: "/image/about1.png",
+      image: "/image/about-ing2.jpg",
     },
     UniqueApproach: {
       text: "Our <strong>unique approach</strong> lies in our ultra-customized follow-ups. While traditional programs might end with a two-day workshop, WRIGHTS extends well beyond the classroom. We combine initial training sessions with a 120-day follow-up period, delivering daily nudges guided by the individual’s behavioral feedback scores. After this period, we generate a second behavioral report so participants can compare their progress, see tangible improvements, and understand the true value of consistent, incremental growth.",
-      image: "/image/about1.png",
+      image: "/image/about-ing3.jpg",
     },
     WhoDoWeServe: {
       text: "<strong>Who do we serve?</strong> Our solution is flexible and scalable, making it just as effective for a company with a handful of managers as it is for an organization with 10,000+ employees. Because our pricing aligns with the nudges delivered rather than the duration of training, even smaller teams can access the same high-impact, tech-driven behavioral insights traditionally reserved for larger enterprises.",
-      image: "/image/about1.png",
+      image: "/image/about-ing4.jpg",
     },
   };
 
@@ -43,20 +43,20 @@ const About = () => {
 
   const tabContent = [
     {
-      text: "It encourages learning and exchange of ideas, it fuels innovation and performance improvement. It also build trust among team members.",
-      imageSrc: "/image/about4.jpeg",
+      text: "We question traditional approaches and embrace fresh perspectives to drive meaningful change. By fostering curiosity and innovation, we help teams break barriers and achieve new heights.",
+      imageSrc: "/image/img1.jpg",
     },
     {
-      text: "Innovation drives growth, and embracing future challenges creates an environment of continuous improvement and learning.",
-      imageSrc: "/image/innovative.jpg",
+      text: "Excellence isn't optional—it's the foundation of everything we do. We leverage data-driven insights and continuous learning to ensure impactful and measurable outcomes.",
+      imageSrc: "/image/img2.jpg",
     },
     {
-      text: "Empathy enables stronger connections, understanding different perspectives, and taking action to make meaningful impacts.",
-      imageSrc: "/image/teamwork.jpg",
+      text: "Lasting change happens when people feel heard, valued, and empowered. We create human-centric solutions that enhance collaboration, well-being, and performance.",
+      imageSrc: "/image/img3.jpg",
     },
     {
-      text: "Effective communication fosters clarity, collaboration, and shared understanding across teams and organizations.",
-      imageSrc: "/image/Communicate.jpg",
+      text: "Complexity holds progress back, so we simplify learning and development. Our nudges and insights help employees take small, effective steps toward long-term growth.",
+      imageSrc: "/image/img4.jpg",
     },
   ];
 
@@ -364,7 +364,7 @@ const About = () => {
             className={`tab ${activeTab === "OurValues" ? "active" : ""}`}
             onClick={() => handleTabClick("OurValues")}
           >
-            Our Values
+            We Believe
           </div>
           <div
             className={`tab ${activeTab === "UniqueApproach" ? "active" : ""}`}
@@ -462,7 +462,7 @@ const About = () => {
               >
                 <FaRegImages />
                 <div className="valueContent">
-                  <p>Innovate the Future</p>
+                  <p>Uphold High Standards in Delivering Results</p>
                 </div>
               </div>
 
@@ -472,7 +472,7 @@ const About = () => {
               >
                 <FaHeart />
                 <div className="valueContent">
-                  <p>Empathy in Action</p>
+                  <p>Focus on People</p>
                 </div>
               </div>
 
@@ -482,7 +482,7 @@ const About = () => {
               >
                 <HiOutlineSpeakerphone />
                 <div className="valueContent">
-                  <p>Communicate with Purpose</p>
+                  <p>Make It Easier</p>
                 </div>
               </div>
             </div>
@@ -509,45 +509,60 @@ const About = () => {
             <h2>Our Team</h2>
           </div>
           <div className="aboutSectionContent">
-            {/* Card 1 */}
-            <div className="aboutSectionCart">
-              <img src="/image/team1.jpg" alt="Team Member 1" />
-              <div className="aboutSectionCartContainer">
-                <div className="aboutSectionMember">
-                  <h2>Mr. Ephrem</h2>
-                  <p>Co-Founder</p>
-                </div>
-                <CiCirclePlus />
-              </div>
-            </div>
+  {/* Card 1 - Ephrem (Left Image + Right Content) */}
+  <div className="aboutSectionCard leftImage">
+    <div className="aboutSectionImage">
+      <img src="/image/team1.jpg" alt="Team Member 1" />
+    </div>
+    <div className="aboutSectionText">
+      <h2>Mr. Ephrem</h2>
+      <p className="role">Co-Founder</p>
+      <p className="bio">
+        With over 12 years of experience in training and development, Ephrem is a leading expert in Organizational Behavior, dedicated to unlocking the potential of individuals and teams. As the Co-Founder of wrights.ai, he has empowered over 15,000 corporate employees and students through 8,000+ hours of training, driving measurable behavioral change, leadership excellence, and enhanced workplace performance.
+        <br /><br />
+        A physics graduate with a postgraduate degree in business administration, Ephrem has trained professionals at all levels—from entry-level employees to C-suite executives—focusing on leadership, communication, collaboration, and productivity. His expertise lies in creating thriving team ecosystems, leveraging strengths to achieve tangible results. Known for his practical, results-driven approach, he crafts tailored solutions that address unique organizational challenges, ensuring long-term impact.
+        <br /><br />
+        At the core of his training philosophy is the belief that behavioral change happens through consistent, science-backed interventions. Through wrights.ai, he pioneers the use of micro-targeted nudges, data-driven insights, and behavioral analytics to create lasting transformation in the workplace. His mission is to equip organizations with actionable strategies that enhance employee engagement, drive performance, and build a culture of continuous growth.
+      </p>
+    </div>
+  </div>
 
-            {/* Card 2 */}
-            <div className="aboutSectionCart">
-              <img src="/image/team2.png" alt="Team Member 2" />
-              <div className="aboutSectionCartContainer">
-                <div className="aboutSectionMember">
-                  <h2>Mr. Infant Ivan</h2>
-                  <p>Technical Architect </p>
-                </div>
-                <CiCirclePlus />
-              </div>
-            </div>
+  {/* Card 2 - Ivan (Right Image + Left Content) */}
+  <div className="aboutSectionCard rightImage">
+    <div className="aboutSectionText">
+      <h2>Mr. Infant Ivan</h2>
+      <p className="role">Technical Architect</p>
+      <p className="bio">
+        A seasoned IT Solutions Architect with over 17 years of experience in the software industry. Proven ability to translate business requirements into robust and scalable technical solutions. Expertise in a wide range of Microsoft technologies, including .NET Core, Web API, WPF, MVC, and Xamarin Forms. Strong understanding of cloud computing platforms (Azure) and microservices architecture.
+        <br /><br />
+        Certified in Azure (6x), TOGAF, and MCTS (SQL Server). Proficient in SQL Server, MongoDB, Azure DevOps, Git, Kafka, and Azure PaaS services. Advocate for Agile methodologies and DevOps practices. Experience in designing, developing, and implementing microservices using Kubernetes, Confluent Kafka, and MongoDB.
+        <br /><br />
+        Demonstrated success in delivering complex projects across various industries, including Retail Logistics, Store Stock Management, and Healthcare. Held key roles in technical consultation, architecture development, and software development. Proven ability to lead and mentor teams, optimize performance, and drive successful outcomes.
+      </p>
+    </div>
+    <div className="aboutSectionImage">
+      <img src="/image/team3.jpg" alt="Team Member 2" />
+    </div>
+  </div>
 
-            {/* Card 3 */}
-            <div className="aboutSectionCart">
-              <img src="/image/team1.png" alt="Team Member 3" />
-              <div className="aboutSectionCartContainer">
-                <div className="aboutSectionMember">
-                  <h2>Mr. Subramaniam</h2>
-                  <p>
-                    Advisor - Director - Blockchain, Crypto, and Digital
-                    Currencies at Paypaul
-                  </p>
-                </div>
-                <CiCirclePlus />
-              </div>
-            </div>
-          </div>
+  {/* Card 3 - Subramaniam (Left Image + Right Content) */}
+  <div className="aboutSectionCard leftImage">
+    <div className="aboutSectionImage">
+      <img src="/image/team2.jpg" alt="Team Member 3" />
+    </div>
+    <div className="aboutSectionText">
+      <h2>Mr. Subramaniam</h2>
+      <p className="role">Advisor - Director - Blockchain, Crypto, and Digital Currencies at Paypaul</p>
+      {/* <p className="bio">
+        Mr. Subramaniam is a seasoned advisor and director specializing in Blockchain, Crypto, and Digital Currencies at Paypaul. With a deep understanding of decentralized technologies, he has been instrumental in driving innovation and strategic growth in the fintech space.
+        <br /><br />
+        His expertise spans blockchain architecture, cryptocurrency ecosystems, and digital payment solutions. He has led numerous initiatives to integrate blockchain technology into traditional financial systems, ensuring scalability, security, and compliance. His work has enabled businesses to adopt cutting-edge solutions for transparency, efficiency, and trust.
+        <br /><br />
+        With a career spanning over two decades, Mr. Subramaniam has advised global organizations on digital transformation, regulatory frameworks, and emerging technologies. His vision is to create a future where blockchain and digital currencies are seamlessly integrated into everyday life, empowering individuals and businesses alike.
+      </p> */}
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </>
