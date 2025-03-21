@@ -5,8 +5,77 @@ import { FaRegImages } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { CiCirclePlus } from "react-icons/ci";
 import { HiOutlineSpeakerphone } from "react-icons/hi";
+
 const About = () => {
   const [activeTab, setActiveTab] = useState("Insight");
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const [isInViews, setIsInViews] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [isVisible, setIsVisible] = useState(false);
+  const [expandedCards, setExpandedCards] = useState([]);
+
+  const containerRef = useRef(null);
+  const sectionRef = useRef(null);
+
+  // Intersection Observer for containerRef
+  useEffect(() => {
+    if (!containerRef.current) return; // Ensure containerRef is attached
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          } else {
+            entry.target.classList.remove("show");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = containerRef.current.querySelectorAll(".aboutSectionCart");
+    if (elements.length > 0) {
+      elements.forEach((el) => observer.observe(el));
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Intersection Observer for sectionRef
+  useEffect(() => {
+    if (!sectionRef.current) return; // Ensure sectionRef is attached
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  // Scroll effect for scaling
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const scaleValue = 1 - scrollPosition / 1000;
+      setScale(Math.max(scaleValue, 0.8));
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const contentData = {
     Insight: {
@@ -18,7 +87,7 @@ const About = () => {
       image: "/image/about-ing2.jpg",
     },
     UniqueApproach: {
-      text: "Our <strong>unique approach</strong> lies in our ultra-customized follow-ups. While traditional programs might end with a two-day workshop, WRIGHTS extends well beyond the classroom. We combine initial training sessions with a 120-day follow-up period, delivering daily nudges guided by the individual’s behavioral feedback scores. After this period, we generate a second behavioral report so participants can compare their progress, see tangible improvements, and understand the true value of consistent, incremental growth.",
+      text: "Our <strong>unique approach</strong> lies in our ultra-customized follow-ups. While traditional programs might end with a two-day workshop, WRIGHTS extends well beyond the classroom. We combine initial training sessions with a 120-day follow-up period, delivering daily nudges guided by the individual's behavioral feedback scores. After this period, we generate a second behavioral report so participants can compare their progress, see tangible improvements, and understand the true value of consistent, incremental growth.",
       image: "/image/about-ing3.jpg",
     },
     WhoDoWeServe: {
@@ -34,8 +103,6 @@ const About = () => {
   const handleBarClick = (tab) => {
     setActiveTab(tab);
   };
-
-  const [selectedTab, setSelectedTab] = useState(0);
 
   const handleSelectTabClick = (tabIndex) => {
     setSelectedTab(tabIndex);
@@ -59,8 +126,6 @@ const About = () => {
       imageSrc: "/image/img4.jpg",
     },
   ];
-
-  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -87,8 +152,6 @@ const About = () => {
     };
   }, []);
 
-  const [isInViews, setIsInViews] = useState(false);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -114,50 +177,47 @@ const About = () => {
     };
   }, []);
 
-  const [scale, setScale] = useState(1);
-
+  // This function is declared twice in your code, I'm removing the duplicate
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-
     const scaleValue = 1 - scrollPosition / 1000;
     setScale(Math.max(scaleValue, 0.8));
   };
 
+  // This is a duplicate effect, already defined above
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  // This is a duplicate effect, already defined above
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       if (entry.isIntersecting) {
+  //         setIsVisible(true);
+  //       }
+  //     },
+  //     { threshold: 0.2 }
+  //   );
+
+  //   if (sectionRef.current) {
+  //     observer.observe(sectionRef.current);
+  //   }
+
+  //   return () => {
+  //     if (sectionRef.current) {
+  //       observer.unobserve(sectionRef.current);
+  //     }
+  //   };
+  // }, []);
+
+  // Fix for the error - Check if containerRef exists and has elements before querying
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    if (!containerRef.current) return;
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
-  const containerRef = useRef(null);
-
-  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -172,77 +232,78 @@ const About = () => {
     );
 
     const elements = containerRef.current.querySelectorAll(".aboutSectionCart");
-    elements.forEach((el) => observer.observe(el));
+    if (elements && elements.length > 0) {
+      elements.forEach((el) => observer.observe(el));
+    }
 
     return () => observer.disconnect();
-  }, []);
-
+  }, [containerRef.current]); // Add containerRef.current as dependency to rerun when it's available
 
   const cardsData = [
     {
-      image: '/image/interventions.jpg',
-      title: '“Nudges”- tiny interventions',
-      description: '“Nudges”, tiny interventions in the work environment to get people attention that influence their behavior. Nudges, remind & encourage people to make better decisions',
+      image: "/image/interventions.jpg",
+      title: "Nudges- tiny interventions",
+      description:
+        "Nudges, tiny interventions in the work environment to get people attention that influence their behavior. Nudges, remind & encourage people to make better decisions",
     },
     {
-      image: '/image/analytics.jpg',
-      title: 'Science and data analytics ',
-      description: 'Training evaluation no longer be based on personal experiences or opinions. Bringing more science and data analytics to measure actual behavior change to make work better ',
+      image: "/image/analytics.jpg",
+      title: "Science and data analytics ",
+      description:
+        "Training evaluation no longer be based on personal experiences or opinions. Bringing more science and data analytics to measure actual behavior change to make work better ",
     },
     {
-      image: '/image/Targeted.jpg',
-      title: 'Micro-Targeted follow-ups',
-      description: 'Machine Learning & Artificial Intelligence  driven micro-targeted follow-ups helps us to know, what intervention to send, to which person, at what time ',
+      image: "/image/Targeted.jpg",
+      title: "Micro-Targeted follow-ups",
+      description:
+        "Machine Learning & Artificial Intelligence  driven micro-targeted follow-ups helps us to know, what intervention to send, to which person, at what time ",
     },
   ];
 
-
   const aboutRef = useRef(null);
-
-  
-
-  // useEffect(() => {  
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting) {
-  //           entry.target.classList.add("show");
-  //         } else {
-  //           entry.target.classList.remove("show");
-  //         }
-  //       });
-  //     },
-  //     { threshold: 0.1 }
-  //   );
-
-  //   const elements = aboutRef.current.querySelectorAll(".aboutSection8Container");
-  //   elements.forEach((el) => observer.observe(el));
-
-  //   return () => observer.disconnect();
-  // }, []);
-
-
   const aboutSubRef = useRef(null);
- 
-  // useEffect(() => {  
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting) {
-  //           entry.target.classList.add("show");
-  //         } else {
-  //           entry.target.classList.remove("show");
-  //         }
-  //       });
-  //     },
-  //     { threshold: 0.1 }
-  //   );
 
-  //   const elements = aboutSubRef.current.querySelectorAll(".aboutSection7Container");
-  //   elements.forEach((el) => observer.observe(el));
+  const toggleBio = (index) => {
+    if (expandedCards.includes(index)) {
+      // If the card is already expanded, collapse it
+      setExpandedCards(expandedCards.filter((i) => i !== index));
+    } else {
+      // If the card is not expanded, expand it and collapse others
+      setExpandedCards([index]);
+    }
+  };
 
-  //   return () => observer.disconnect();
-  // }, []);
+  const teamMembers = [
+    {
+      name: "Mr. Ephrem",
+      role: "Co-Founder",
+      image: "/image/team1.jpg",
+      bio: [
+        `With over 12 years of experience in training and development, Ephrem is a leading expert in Organizational Behavior, dedicated to unlocking the potential of individuals and teams. As the Co-Founder of wrights.ai, he has empowered over 15,000 corporate employees and students through 8,000+ hours of training, driving measurable behavioral change, leadership excellence, and enhanced workplace performance.`,
+        `A physics graduate with a postgraduate degree in business administration, Ephrem has trained professionals at all levels—from entry-level employees to C-suite executives—focusing on leadership, communication, collaboration, and productivity. His expertise lies in creating thriving team ecosystems, leveraging strengths to achieve tangible results. Known for his practical, results-driven approach, he crafts tailored solutions that address unique organizational challenges, ensuring long-term impact.`,
+        `At the core of his training philosophy is the belief that behavioral change happens through consistent, science-backed interventions. Through wrights.ai, he pioneers the use of micro-targeted nudges, data-driven insights, and behavioral analytics to create lasting transformation in the workplace. His mission is to equip organizations with actionable strategies that enhance employee engagement, drive performance, and build a culture of continuous growth.`,
+      ],
+    },
+    {
+      name: "Mr. Infant Ivan",
+      role: "Technical Architect",
+      image: "/image/team3.jpg",
+      bio: [
+        `A seasoned IT Solutions Architect with over 17 years of experience in the software industry. Proven ability to translate business requirements into robust and scalable technical solutions. Expertise in a wide range of Microsoft technologies, including .NET Core, Web API, WPF, MVC, and Xamarin Forms. Strong understanding of cloud computing platforms (Azure) and microservices architecture.`,
+        `Certified in Azure (6x), TOGAF, and MCTS (SQL Server). Proficient in SQL Server, MongoDB, Azure DevOps, Git, Kafka, and Azure PaaS services. Advocate for Agile methodologies and DevOps practices. Experience in designing, developing, and implementing microservices using Kubernetes, Confluent Kafka, and MongoDB.`,
+        `Demonstrated success in delivering complex projects across various industries, including Retail Logistics, Store Stock Management, and Healthcare. Held key roles in technical consultation, architecture development, and software development. Proven ability to lead and mentor teams, optimize performance, and drive successful outcomes.`,
+      ],
+    },
+    {
+      name: "Mr. Subramaniam",
+      role: "Advisor",
+      image: "/image/team2.jpg",
+      bio: [
+        `Mr. Subramaniam is a seasoned advisor and director specializing in Blockchain, Crypto, and Digital Currencies at Paypaul. `,
+      ],
+    },
+  ];
+
   return (
     <>
       <div className="about">
@@ -250,83 +311,14 @@ const About = () => {
           <div className="aboutContent">
             <h2>Our Commitment to LASTING Change</h2>
             <p>
-            By blending data-driven insights, personalized nudges, and practical interventions, we help employees become their best selves and organizations thrive.
+              By blending data-driven insights, personalized nudges, and
+              practical interventions, we help employees become their best
+              selves and organizations thrive.
             </p>
             <button className="bookDemo-btn">Book a Demo</button>
           </div>
         </div>
       </div>
-      {/* <div className="aboutSection7" ref={aboutSubRef}>
-        <div className="aboutSection7Head">
-          <h2>We WRIGHTS,</h2>
-        </div>
-        <div className="aboutSection7Container">
-          <div className="aboutSection7Img">
-            <img src="/image/about7.jpg" alt="" />
-          </div>
-          <div className="aboutSection7Content">
-            <div className="aboutSection7Content1">
-              <div className="aboutSection7ContentHead">
-                <h2>Why we're here</h2>
-              </div>
-              <div className="aboutSection7ContentContent">
-                <p>
-                  Democratically influencing individuals and teams to create a
-                  work environment where everyone feels valued and heard. That's
-                  what inspires us every day .
-                </p>
-              </div>
-            </div>
-            <div className="aboutSection7Content2">
-              <div className="aboutSection7ContentHead">
-                <h2>What we do</h2>
-              </div>
-              <div className="aboutSection7ContentContent">
-                <p>
-                  At WRIGHTS we believe lasting behavioral changes can be
-                  achieved through small interventions in the work flow called
-                  NUDGES. Nudge is a Nobel prize winning concept in behavioral
-                  economics that drives lasting behavioral change. We send
-                  micro-targeted nudges not just to the participants but also to
-                  their stakeholders (managers, reports, peers and
-                  collaborators). Our strong Machine Language and Artificial
-                  intelligence helps us to decide what nudge to send, to which
-                  person, at exactly what time. Such nudges to the participants
-                  and their stakeholders can drive better behavioral change than
-                  any other conventional trainings.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="aboutSection8" ref={aboutRef}>
-      <div className="aboutSection8Container">
-        <div className="aboutSection8Head">
-          <h2>The SOLUTION</h2>
-        </div>
-        <div className="aboutSection8Content">
-          <p>
-            Choice architecture is the design of different ways in which choices
-            can be presented to decision makers, and the impact of that
-            presentation on decision-making. Choice architecture can be used to
-            help nudge people to make better choices without forcing certain
-            outcomes upon anyone.
-          </p>
-        </div>
-      </div>
-    </div> */}
-      {/* <div className="aboutSection9" >
-      <div className="cards-container">
-      {cardsData.map((card, index) => (
-        <div key={index} className="card">
-          <img src={card.image} alt={card.title} className="card-image" />
-          <h2 className="card-title">{card.title}</h2>
-          <p className="card-description">{card.description}</p>
-        </div>
-      ))}
-    </div>
-      </div> */}
       <div className={`aboutSection1 ${isInView ? "inView" : ""}`}>
         <div className="aboutSection1Head">
           <h2>It all began with a single question</h2>
@@ -504,65 +496,43 @@ const About = () => {
         </div>
       </div>
       <div className="aboutSection5">
-        <div className="aboutSection5Contanier" ref={containerRef}>
+        <div className="aboutSection5Container">
           <div className="aboutSection5Head">
             <h2>Our Team</h2>
+            <p>Meet the talented individuals behind our success.</p>
           </div>
           <div className="aboutSectionContent">
-  {/* Card 1 - Ephrem (Left Image + Right Content) */}
-  <div className="aboutSectionCard leftImage">
-    <div className="aboutSectionImage">
-      <img src="/image/team1.jpg" alt="Team Member 1" />
-    </div>
-    <div className="aboutSectionText">
-      <h2>Mr. Ephrem</h2>
-      <p className="role">Co-Founder</p>
-      <p className="bio">
-        With over 12 years of experience in training and development, Ephrem is a leading expert in Organizational Behavior, dedicated to unlocking the potential of individuals and teams. As the Co-Founder of wrights.ai, he has empowered over 15,000 corporate employees and students through 8,000+ hours of training, driving measurable behavioral change, leadership excellence, and enhanced workplace performance.
-        <br /><br />
-        A physics graduate with a postgraduate degree in business administration, Ephrem has trained professionals at all levels—from entry-level employees to C-suite executives—focusing on leadership, communication, collaboration, and productivity. His expertise lies in creating thriving team ecosystems, leveraging strengths to achieve tangible results. Known for his practical, results-driven approach, he crafts tailored solutions that address unique organizational challenges, ensuring long-term impact.
-        <br /><br />
-        At the core of his training philosophy is the belief that behavioral change happens through consistent, science-backed interventions. Through wrights.ai, he pioneers the use of micro-targeted nudges, data-driven insights, and behavioral analytics to create lasting transformation in the workplace. His mission is to equip organizations with actionable strategies that enhance employee engagement, drive performance, and build a culture of continuous growth.
-      </p>
-    </div>
-  </div>
-
-  {/* Card 2 - Ivan (Right Image + Left Content) */}
-  <div className="aboutSectionCard rightImage">
-    <div className="aboutSectionText">
-      <h2>Mr. Infant Ivan</h2>
-      <p className="role">Technical Architect</p>
-      <p className="bio">
-        A seasoned IT Solutions Architect with over 17 years of experience in the software industry. Proven ability to translate business requirements into robust and scalable technical solutions. Expertise in a wide range of Microsoft technologies, including .NET Core, Web API, WPF, MVC, and Xamarin Forms. Strong understanding of cloud computing platforms (Azure) and microservices architecture.
-        <br /><br />
-        Certified in Azure (6x), TOGAF, and MCTS (SQL Server). Proficient in SQL Server, MongoDB, Azure DevOps, Git, Kafka, and Azure PaaS services. Advocate for Agile methodologies and DevOps practices. Experience in designing, developing, and implementing microservices using Kubernetes, Confluent Kafka, and MongoDB.
-        <br /><br />
-        Demonstrated success in delivering complex projects across various industries, including Retail Logistics, Store Stock Management, and Healthcare. Held key roles in technical consultation, architecture development, and software development. Proven ability to lead and mentor teams, optimize performance, and drive successful outcomes.
-      </p>
-    </div>
-    <div className="aboutSectionImage">
-      <img src="/image/team3.jpg" alt="Team Member 2" />
-    </div>
-  </div>
-
-  {/* Card 3 - Subramaniam (Left Image + Right Content) */}
-  <div className="aboutSectionCard leftImage">
-    <div className="aboutSectionImage">
-      <img src="/image/team2.jpg" alt="Team Member 3" />
-    </div>
-    <div className="aboutSectionText">
-      <h2>Mr. Subramaniam</h2>
-      <p className="role">Advisor - Director - Blockchain, Crypto, and Digital Currencies at Paypaul</p>
-      {/* <p className="bio">
-        Mr. Subramaniam is a seasoned advisor and director specializing in Blockchain, Crypto, and Digital Currencies at Paypaul. With a deep understanding of decentralized technologies, he has been instrumental in driving innovation and strategic growth in the fintech space.
-        <br /><br />
-        His expertise spans blockchain architecture, cryptocurrency ecosystems, and digital payment solutions. He has led numerous initiatives to integrate blockchain technology into traditional financial systems, ensuring scalability, security, and compliance. His work has enabled businesses to adopt cutting-edge solutions for transparency, efficiency, and trust.
-        <br /><br />
-        With a career spanning over two decades, Mr. Subramaniam has advised global organizations on digital transformation, regulatory frameworks, and emerging technologies. His vision is to create a future where blockchain and digital currencies are seamlessly integrated into everyday life, empowering individuals and businesses alike.
-      </p> */}
-    </div>
-  </div>
-</div>
+            {teamMembers.map((member, index) => (
+              <div className="aboutSectionCard" key={index}>
+                <div className="aboutSectionImage">
+                  <img src={member.image} alt={member.name} />
+                </div>
+                <div className="aboutSectionText">
+                  <h2>{member.name}</h2>
+                  <p className="role">{member.role}</p>
+                  <button
+                    className="toggleButton"
+                    onClick={() => toggleBio(index)}
+                  >
+                    {expandedCards.includes(index) ? "−" : "+"}
+                  </button>
+                  <div
+                    className={`bio ${
+                      expandedCards.includes(index) ? "expanded" : ""
+                    }`}
+                  >
+                    {member.bio.map((paragraph, i) => (
+                      <p key={i}>
+                        {paragraph}
+                        <br />
+                        <br />
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
