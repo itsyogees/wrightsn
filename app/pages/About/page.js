@@ -496,45 +496,59 @@ const About = () => {
         </div>
       </div>
       <div className="aboutSection5">
-        <div className="aboutSection5Container">
-          <div className="aboutSection5Head">
-            <h2>Our Team</h2>
-            <p>Meet the talented individuals behind our success.</p>
+  <div className="aboutSection5Container">
+    <div className="aboutSection5Head">
+      <h2>Our Team</h2>
+      <p>Meet the talented individuals behind our success.</p>
+    </div>
+    <div className="aboutSectionContent">
+      {teamMembers.map((member, index) => (
+        <div className="aboutSectionCard" key={index}>
+          <div className="aboutSectionImage">
+            <img src={member.image} alt={member.name} />
+            <div className="imageOverlay"></div>
+            <div className="aboutSectionText">
+              <h2>{member.name}</h2>
+              <p className="role">{member.role}</p>
+              <button
+                className="toggleButton"
+                onClick={() => toggleBio(index)}
+              >
+                {expandedCards.includes(index) ? "−" : "+"}
+              </button>
+            </div>
           </div>
-          <div className="aboutSectionContent">
-            {teamMembers.map((member, index) => (
-              <div className="aboutSectionCard" key={index}>
-                <div className="aboutSectionImage">
-                  <img src={member.image} alt={member.name} />
-                </div>
-                <div className="aboutSectionText">
-                  <h2>{member.name}</h2>
-                  <p className="role">{member.role}</p>
-                  <button
-                    className="toggleButton"
-                    onClick={() => toggleBio(index)}
-                  >
-                    {expandedCards.includes(index) ? "−" : "+"}
-                  </button>
-                  <div
-                    className={`bio ${
-                      expandedCards.includes(index) ? "expanded" : ""
-                    }`}
-                  >
-                    {member.bio.map((paragraph, i) => (
-                      <p key={i}>
-                        {paragraph}
-                        <br />
-                        <br />
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Modal */}
+  {teamMembers.map((member, index) => (
+    <div
+      className={`modal ${expandedCards.includes(index) ? "open" : ""}`}
+      key={index}
+    >
+      <div className="modalContent">
+        <button className="closeButton" onClick={() => toggleBio(index)}>
+          ×
+        </button>
+        <div className="modalImage">
+          <img src={member.image} alt={member.name} />
+        </div>
+        <div className="modalText">
+          <h2>{member.name}</h2>
+          <p className="role">{member.role}</p>
+          <div className="bio">
+            {member.bio.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
             ))}
           </div>
         </div>
       </div>
+    </div>
+  ))}
+</div>
     </>
   );
 };
