@@ -335,83 +335,75 @@ const About = () => {
         </div>
       </div>
       <div className={`aboutSection2 ${isInViews ? "inView" : ""}`}>
-        <div className="aboutSection2Container">
-          <div className="aboutSection2Content">
-            <p
-              dangerouslySetInnerHTML={{ __html: contentData[activeTab].text }}
-            />
-          </div>
-          <div className="aboutSection2Img">
-            <img src={contentData[activeTab].image} alt={activeTab} />
-          </div>
-        </div>
-        <div className="aboutSection2Tabs">
-          <div
-            className={`tab ${activeTab === "Insight" ? "active" : ""}`}
-            onClick={() => handleTabClick("Insight")}
-          >
-            Insight
-          </div>
-          <div
-            className={`tab ${activeTab === "OurValues" ? "active" : ""}`}
-            onClick={() => handleTabClick("OurValues")}
-          >
-            We Believe
-          </div>
-          <div
-            className={`tab ${activeTab === "UniqueApproach" ? "active" : ""}`}
-            onClick={() => handleTabClick("UniqueApproach")}
-          >
-            Unique Approach
-          </div>
-          <div
-            className={`tab ${activeTab === "WhoDoWeServe" ? "active" : ""}`}
-            onClick={() => handleTabClick("WhoDoWeServe")}
-          >
-            Who do we serve?
-          </div>
-        </div>
-        <div className="aboutSection2Bar">
-          <div
-            className="bar1"
-            style={{
-              backgroundColor:
-                activeTab === "Insight" ? "rgba(0, 33, 54, 1)" : "transparent",
-            }}
-            onClick={() => handleBarClick("Insight")}
-          ></div>
-          <div
-            className="bar2"
-            style={{
-              backgroundColor:
-                activeTab === "OurValues"
-                  ? "rgba(0, 33, 54, 1)"
-                  : "transparent",
-            }}
-            onClick={() => handleBarClick("OurValues")}
-          ></div>
-          <div
-            className="bar3"
-            style={{
-              backgroundColor:
-                activeTab === "UniqueApproach"
-                  ? "rgba(0, 33, 54, 1)"
-                  : "transparent",
-            }}
-            onClick={() => handleBarClick("UniqueApproach")}
-          ></div>
-          <div
-            className="bar4"
-            style={{
-              backgroundColor:
-                activeTab === "WhoDoWeServe"
-                  ? "rgba(0, 33, 54, 1)"
-                  : "transparent",
-            }}
-            onClick={() => handleBarClick("WhoDoWeServe")}
-          ></div>
-        </div>
-      </div>
+  <div className="aboutSection2Container">
+    <div className="aboutSection2Content">
+      <p dangerouslySetInnerHTML={{ __html: contentData[activeTab].text }} />
+    </div>
+    <div className="aboutSection2Img">
+      <img src={contentData[activeTab].image} alt={activeTab} />
+    </div>
+  </div>
+  <div className="aboutSection2Tabs">
+    <div
+      className={`tab ${activeTab === "Insight" ? "active" : ""}`}
+      onClick={() => handleTabClick("Insight")}
+    >
+      Insight
+    </div>
+    <div
+      className={`tab ${activeTab === "OurValues" ? "active" : ""}`}
+      onClick={() => handleTabClick("OurValues")}
+    >
+      We Believe
+    </div>
+    <div
+      className={`tab ${activeTab === "UniqueApproach" ? "active" : ""}`}
+      onClick={() => handleTabClick("UniqueApproach")}
+    >
+      Unique Approach
+    </div>
+    <div
+      className={`tab ${activeTab === "WhoDoWeServe" ? "active" : ""}`}
+      onClick={() => handleTabClick("WhoDoWeServe")}
+    >
+      Who do we serve?
+    </div>
+  </div>
+  <div className="aboutSection2Bar">
+    <div
+      className="bar1"
+      style={{
+        backgroundColor:
+          activeTab === "Insight" ? "rgba(0, 33, 54, 1)" : "transparent",
+      }}
+      onClick={() => handleBarClick("Insight")}
+    ></div>
+    <div
+      className="bar2"
+      style={{
+        backgroundColor:
+          activeTab === "OurValues" ? "rgba(0, 33, 54, 1)" : "transparent",
+      }}
+      onClick={() => handleBarClick("OurValues")}
+    ></div>
+    <div
+      className="bar3"
+      style={{
+        backgroundColor:
+          activeTab === "UniqueApproach" ? "rgba(0, 33, 54, 1)" : "transparent",
+      }}
+      onClick={() => handleBarClick("UniqueApproach")}
+    ></div>
+    <div
+      className="bar4"
+      style={{
+        backgroundColor:
+          activeTab === "WhoDoWeServe" ? "rgba(0, 33, 54, 1)" : "transparent",
+      }}
+      onClick={() => handleBarClick("WhoDoWeServe")}
+    ></div>
+  </div>
+</div>
       <div className="aboutSection3">
         <div className="aboutSection3Head">
           <h2>Our Vision</h2>

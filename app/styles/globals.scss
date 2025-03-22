@@ -50,21 +50,26 @@ html {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       @media (max-width: 1024px) {
         justify-content: space-around;
       }
+
       @media (max-width: 767px) {
         width: 100%;
       }
+
       .navIcons {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 60%;
+
         @media (max-width: 767px) {
           width: 100%;
           justify-content: space-around;
         }
+
         .logo img {
           width: 200px;
           height: 56px;
@@ -75,9 +80,11 @@ html {
           display: none;
           font-size: 1.5rem;
           cursor: pointer;
+
           svg {
             color: #fff;
           }
+
           @media (max-width: 854px) {
             display: block;
           }
@@ -109,6 +116,34 @@ html {
           &.active {
             left: 0;
           }
+
+          .mobileButtons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+
+            .login-btn,
+            .bookDemo-btn {
+              padding: 0.5rem 1rem;
+              border-radius: 5px;
+              cursor: pointer;
+              text-align: center;
+              font-size: 1rem;
+            }
+
+            .login-btn {
+              background: transparent;
+              border: 1px solid #fff;
+              color: #fff;
+            }
+
+            .bookDemo-btn {
+              background: #fd4621;
+              border: none;
+              color: #fff;
+            }
+          }
         }
 
         li a {
@@ -128,23 +163,16 @@ html {
             left: 0;
           }
         }
-        .rightMenu {
-          display: none;
-          @media (max-width: 767px) {
-            display: block;
-            .login {
-              margin-bottom: 1rem;
-            }
-          }
-        }
       }
 
       .rightMenu {
         display: flex;
         gap: 1rem;
-        @media (max-width: 767px) {
+
+        @media (max-width: 854px) {
           display: none;
         }
+
         .login-btn,
         .bookDemo-btn {
           padding: 0.5rem 1rem;
@@ -1574,11 +1602,23 @@ border-radius: 10px;
         justify-content: space-between;
         margin: 2rem 0;
         gap: 1rem;
-        @media (max-width: 600px) {
-          flex-wrap: wrap;
+        overflow-x: auto; /* Allows horizontal scrolling */
+        scrollbar-width: none; /* Hides scrollbar for Firefox */
+        -ms-overflow-style: none; /* Hides scrollbar for IE/Edge */
+        white-space: nowrap; /* Prevents wrapping of child elements */
+      
+        /* Hides scrollbar for Chrome, Safari, and Opera */
+        &::-webkit-scrollbar {
+          display: none;
         }
+      
+        @media (max-width: 600px) {
+          flex-wrap: nowrap; /* Prevents wrapping in mobile view */
+        }
+      
         .valueTab {
-          width: 25%;
+          flex: 0 0 25%; /* Prevents flex items from shrinking or growing */
+          width: 25%; /* Adjust width to fit content */
           text-align: center;
           position: relative;
           cursor: pointer;
@@ -1586,28 +1626,33 @@ border-radius: 10px;
           flex-direction: column;
           align-items: center;
           margin-bottom: 1rem;
+          padding: 0 10px; /* Adds some spacing between items */
+      
           @media (max-width: 600px) {
-            width: 100%;
+            width: auto; /* Ensures tabs don't take full width */
           }
+      
           svg {
             font-size: 30px;
             color: #b7b7b7;
             transition: color 0.3s ease;
+      
             @media (max-width: 768px) {
-              font-size: 40px;
+              font-size: 20px;
             }
           }
-
+      
           .valueContent {
             display: none;
             opacity: 0;
             transition: opacity 0.3s ease;
+      
             p {
               margin-top: 10px;
               font-size: 1rem;
             }
           }
-
+      
           &::after {
             content: "";
             position: absolute;
@@ -1618,50 +1663,50 @@ border-radius: 10px;
             background-color: rgba(0, 45, 73, 1);
             transition: width 0.3s ease;
           }
-
+      
           &:hover {
             svg {
               color: rgba(0, 45, 73, 1);
             }
-
+      
             &::after {
               width: 90%;
               margin: 0 auto;
             }
-
+      
             .valueContent {
               display: block;
               opacity: 1;
             }
           }
-
+      
           &.active {
             svg {
               color: rgba(0, 45, 73, 1);
             }
-
+      
             .valueContent {
               display: block;
               opacity: 1;
             }
-
+      
             &::after {
               width: 90%;
               margin: 0 auto;
             }
           }
         }
-
+      
         // Responsive styles
         @media (max-width: 768px) {
           .valueTab {
-            width: 50%;
+            width: auto; /* Adjust width for smaller screens */
           }
         }
-
+      
         @media (max-width: 480px) {
           .valueTab {
-            width: 100%;
+            width: auto; /* Full width not needed in horizontal layout */
           }
         }
       }
@@ -2378,21 +2423,32 @@ border-radius: 10px;
       display: flex;
       justify-content: space-between;
       margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-      // opacity: 0;
-      // animation: slideIn 1s ease-in-out forwards;
-      // animation-delay: 0.6s;
+      overflow-x: auto; 
+      scrollbar-width: none;  
+      -ms-overflow-style: none; 
+      white-space: nowrap;   
+     
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    
       .tab {
-        width: 25%;
-
+        flex: 0 0 auto;  
+        width: auto;  
         padding: 0.5rem 1rem;
         cursor: pointer;
         font-weight: bold;
         transition: background-color 0.3s ease;
         text-align: center;
+    
         @media (max-width: 500px) {
-          width: 100%;
+          width: auto;  
+          margin-right: 1rem; 
         }
+      }
+    
+      .tab:last-child {
+        margin-right: 0;  
       }
     }
 

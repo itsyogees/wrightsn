@@ -11,6 +11,7 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false); // State to track mobile view
   const [formValues, setFormValues] = useState({
     name: "",
     mobileNo: "",
@@ -22,8 +23,22 @@ const Navbar = () => {
   const navbarRef = useRef(null);
   const pathname = usePathname();
 
+  // Check if the screen is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 854);
+    };
+
+    checkMobile(); // Initial check
+    window.addEventListener("resize", checkMobile); // Listen for resize events
+
+    return () => {
+      window.removeEventListener("resize", checkMobile); // Cleanup
+    };
+  }, []);
+
   const toggleMenu = () => {
-    if (typeof window !== "undefined" && window.innerWidth <= 854) {
+    if (isMobile) {
       setIsMenuOpen(!isMenuOpen);
       document.body.classList.toggle("menu-open", !isMenuOpen);
     }
@@ -84,56 +99,109 @@ const Navbar = () => {
         <nav className="navbar">
           <div className="navIcons">
             <div className="menuToggle" onClick={toggleMenu}>
-              {!isMenuOpen ? <FaBars className="icon" /> : <FaTimes className="icon" />}
+              {!isMenuOpen ? (
+                <FaBars className="icon" />
+              ) : (
+                <FaTimes className="icon" />
+              )}
             </div>
             <div className="logo">
               <Link href="/">
                 <img src="/image/logo.png" alt="Logo" />
               </Link>
             </div>
-            <ul ref={menuRef} className={`navItems ${isMenuOpen ? "active" : ""}`}>
+            <ul
+              ref={menuRef}
+              className={`navItems ${isMenuOpen ? "active" : ""}`}
+            >
               <li>
-                <Link href="/" className={getLinkClass("/")} onClick={toggleMenu}>
+                <Link
+                  href="/"
+                  className={getLinkClass("/")}
+                  onClick={toggleMenu}
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/pages/About" className={getLinkClass("/pages/About")} onClick={toggleMenu}>
+                <Link
+                  href="/pages/About"
+                  className={getLinkClass("/pages/About")}
+                  onClick={toggleMenu}
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/pages/Product" className={getLinkClass("/pages/Product")} onClick={toggleMenu}>
+                <Link
+                  href="/pages/Product"
+                  className={getLinkClass("/pages/Product")}
+                  onClick={toggleMenu}
+                >
                   Product
                 </Link>
               </li>
               <li>
-                <Link href="/pages/Solution" className={getLinkClass("/pages/Solution")} onClick={toggleMenu}>
+                <Link
+                  href="/pages/Solution"
+                  className={getLinkClass("/pages/Solution")}
+                  onClick={toggleMenu}
+                >
                   Solution
                 </Link>
               </li>
               <li>
-                <Link href="/pages/Faq" className={getLinkClass("/pages/Faq")} onClick={toggleMenu}>
+                <Link
+                  href="/pages/Faq"
+                  className={getLinkClass("/pages/Faq")}
+                  onClick={toggleMenu}
+                >
                   FAQ
                 </Link>
               </li>
+              {/* Conditionally render buttons for mobile view */}
+              {isMobile && (
+                <li className="mobileButtons">
+                  <button
+                    className="login-btn"
+                    onClick={() =>
+                      window.open("https://wrights-nudges.netlify.app/", "_blank")
+                    }
+                  >
+                    Login
+                  </button>
+                  <button className="bookDemo-btn" onClick={toggleModal}>
+                    Book a Demo
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 
-          {/* Right Menu */}
-          <div className="rightMenu">
-            <div className="login">
-              <button className="login-btn">Login</button>
+          {/* Right Menu for Desktop */}
+          {!isMobile && (
+            <div className="rightMenu">
+              <div className="login">
+                <button
+                  className="login-btn"
+                  onClick={() =>
+                    window.open("https://wrights-nudges.netlify.app/", "_blank")
+                  }
+                >
+                  Login
+                </button>
+              </div>
+              <div className="bookDemo">
+                <button className="bookDemo-btn" onClick={toggleModal}>
+                  Book a Demo
+                </button>
+              </div>
             </div>
-            <div className="bookDemo">
-              <button className="bookDemo-btn" onClick={toggleModal}>
-                Book a Demo
-              </button>
-            </div>
-          </div>
+          )}
         </nav>
       </div>
 
+      {/* Modal for Book a Demo */}
       {isModalOpen && (
         <div className="modalOverlay">
           <div className="modalContent">
